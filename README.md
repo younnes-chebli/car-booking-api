@@ -9,9 +9,9 @@ Extension and improvement of our [CLI Car Booking Application](https://github.co
 
 ## Endpoints
 
-| HTTP                              | Description                                           |
+| HTTP REQUESTS | Description |
 |-----------------------------------|-------------------------------------------------------|
-| **General**                           |                                                       |
+| **General** | |
 | ```GET /api/v1/home```            | Homepage                                              |
 | **Customers**                         |                                                       |
 | ```GET /api/v1/customers```       | Retrieves **all** the **Customers**                   |
