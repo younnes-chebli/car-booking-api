@@ -11,8 +11,6 @@ Extension and improvement of our [CLI Car Booking Application](https://github.co
 
 | HTTP                                | Description                                            |
 |-------------------------------------|--------------------------------------------------------|
-| **General**                         |
-| ```GET /api/v1/home```              | Homepage                                               |
 | **Customers**                       |                                                        |
 | ```GET /api/v1/customers```         | Retrieves **all** the **Customers**                    |
 | ```GET /api/v1/customer/{id}```     | Retrieves the **Customer** with the specified **id**   |
