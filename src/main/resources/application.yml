@@ -1,0 +1,8 @@
+server:
+  port: 8080
+  error:
+    include-message: always
+
+spring:
+  main:
+    web-application-type: servlet

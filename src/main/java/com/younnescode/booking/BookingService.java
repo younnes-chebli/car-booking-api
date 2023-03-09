@@ -2,6 +2,7 @@ package com.younnescode.booking;
 
 import com.younnescode.car.Car;
 import com.younnescode.customer.Customer;
+import com.younnescode.exception.ResourceNotFound;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class BookingService {
     public Booking getById(Integer id) {
         return bookingDataAccessService.getById(id)
                 .orElseThrow(() ->
-                        new IllegalArgumentException("Booking with id [%s] not found".formatted(id))
+                        new ResourceNotFound("Booking with id [%s] not found".formatted(id))
                 );
     }
 

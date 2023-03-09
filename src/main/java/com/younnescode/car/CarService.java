@@ -1,5 +1,6 @@
 package com.younnescode.car;
 
+import com.younnescode.exception.ResourceNotFound;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,14 +21,14 @@ public class CarService {
     public Car getById(Integer id) {
         return carDataAccessService.getById(id)
                 .orElseThrow(() ->
-                        new IllegalArgumentException("Car with id [%s] not found".formatted(id))
+                        new ResourceNotFound("Car with id [%s] not found".formatted(id))
                 );
     }
 
     public Car getByRegNumber(Integer regNumber) {
         return carDataAccessService.getByRegNumber(regNumber)
                 .orElseThrow(() ->
-                        new IllegalArgumentException("Car with Reg Number [%s] not found".formatted(regNumber))
+                        new ResourceNotFound("Car with Reg Number [%s] not found".formatted(regNumber))
                 );
     }
 
