@@ -1,7 +1,10 @@
 package com.younnescode.customer;
 
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class CustomerService {
     private final CustomerDAO customerDataAccessService;
 

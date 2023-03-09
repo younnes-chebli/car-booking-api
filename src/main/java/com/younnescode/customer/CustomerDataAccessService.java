@@ -1,11 +1,13 @@
 package com.younnescode.customer;
 
 import com.github.javafaker.Faker;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class CustomerDataAccessService implements CustomerDAO {
     private static final List<Customer> customers;
 

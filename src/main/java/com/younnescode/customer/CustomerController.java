@@ -8,16 +8,23 @@ import java.util.List;
 
 @RestController
 public class CustomerController {
+    private final CustomerService customerService;
 
-    private final CustomerDAO customerDataAccessService = new CustomerDataAccessService();
-    private final CustomerService customerService = new CustomerService(customerDataAccessService);
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
 
-    @GetMapping("/api/v1/customers")
+    @GetMapping("/api/v1")
+    public String hello() {
+        return "helllo";
+    }
+
+    @GetMapping("api/v1/customers")
     public List<Customer> getCustomers() {
         return customerService.getAll();
     }
 
-    @GetMapping("/api/v1/customer/{id}")
+    @GetMapping("api/v1/customer/{id}")
     public Customer getCustomer(@PathVariable("id") Integer id) {
         return customerService.getById(id);
     }

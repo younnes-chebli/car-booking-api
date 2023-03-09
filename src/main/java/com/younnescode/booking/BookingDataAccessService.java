@@ -1,17 +1,18 @@
 package com.younnescode.booking;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class BookingDataAccessService implements BookingDAO {
     private static final List<Booking> bookings;
 
     static {
         bookings = new ArrayList<>();
     }
-
-    private final BookingDAO bookingDataAccessService = new BookingDataAccessService();
 
     @Override
     public List<Booking> getAll() {

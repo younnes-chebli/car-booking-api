@@ -2,9 +2,11 @@ package com.younnescode.booking;
 
 import com.younnescode.car.Car;
 import com.younnescode.customer.Customer;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class BookingService {
     private final BookingDAO bookingDataAccessService;
 

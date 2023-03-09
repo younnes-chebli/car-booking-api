@@ -1,10 +1,13 @@
 package com.younnescode.car;
 
+import org.springframework.stereotype.Repository;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class CarDataAccessService implements CarDAO {
     private static final List<Car> cars;
 
@@ -33,6 +36,5 @@ public class CarDataAccessService implements CarDAO {
         return cars.stream()
                 .filter(c -> c.getRegNumber().equals(regNumber))
                 .findFirst();
-
     }
 }

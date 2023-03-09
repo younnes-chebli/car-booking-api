@@ -8,20 +8,23 @@ import java.util.List;
 
 @RestController
 public class CarController {
-    private final CarDAO carDataAccessService  = new CarDataAccessService();
-    private final CarService carService = new CarService(carDataAccessService);
+    private final CarService carService;
 
-    @GetMapping("/api/v1/cars")
+    public CarController(CarService carService) {
+        this.carService = carService;
+    }
+
+    @GetMapping("api/v1/cars")
     public List<Car> getCars() {
         return carService.getAll();
     }
 
-    @GetMapping("/api/v1/car/{id}")
+    @GetMapping("api/v1/car/{id}")
     public Car getCar(@PathVariable("id") Integer id) {
         return carService.getById(id);
     }
 
-    @GetMapping("/api/v1/car/{regNumber}")
+    @GetMapping("api/v1/car/regnumber/{regNumber}")
     public Car getCarByRegNumber(@PathVariable("regNumber") Integer regNumber) {
         return carService.getByRegNumber(regNumber);
     }

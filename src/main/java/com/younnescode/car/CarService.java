@@ -1,8 +1,11 @@
 package com.younnescode.car;
 
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class CarService {
     private final CarDAO carDataAccessService;
 
@@ -22,7 +25,7 @@ public class CarService {
     }
 
     public Car getByRegNumber(Integer regNumber) {
-        return carDataAccessService.getById(regNumber)
+        return carDataAccessService.getByRegNumber(regNumber)
                 .orElseThrow(() ->
                         new IllegalArgumentException("Car with Reg Number [%s] not found".formatted(regNumber))
                 );
