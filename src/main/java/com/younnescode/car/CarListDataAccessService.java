@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository("car-list")
 public class CarListDataAccessService implements CarDAO {
@@ -52,5 +53,19 @@ public class CarListDataAccessService implements CarDAO {
     @Override
     public void saveCar(Car car) {
 
+    }
+
+    @Override
+    public List<Car> getAvailableCars() {
+        return cars.stream()
+                .filter(c -> !c.isBooked())
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Car> getAvailableElectricCars() {
+        return cars.stream()
+                .filter(c -> !c.isBooked() && c.isElectric())
+                .collect(Collectors.toList());
     }
 }

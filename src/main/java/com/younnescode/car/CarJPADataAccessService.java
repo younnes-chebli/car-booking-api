@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository("car-jpa")
 public class CarJPADataAccessService implements CarDAO {
@@ -39,5 +40,23 @@ public class CarJPADataAccessService implements CarDAO {
     @Override
     public void saveCar(Car car) {
         carRepository.save(car);
+    }
+
+    @Override
+    public List<Car> getAvailableCars() {
+        //try with jpa;
+
+        return carRepository.findAll().stream()
+                .filter(c -> !c.isBooked())
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Car> getAvailableElectricCars() {
+        //try with jpa;
+
+        return carRepository.findAll().stream()
+                .filter(c -> !c.isBooked() && c.isElectric())
+                .collect(Collectors.toList());
     }
 }

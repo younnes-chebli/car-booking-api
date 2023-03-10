@@ -28,6 +28,16 @@ public class CarController {
         return carService.getByRegNumber(regNumber);
     }
 
+    @GetMapping("available")
+    public List<Car> getAvailableCars() {
+        return carService.getAvailableCars();
+    }
+
+    @GetMapping("available-electric")
+    public List<Car> getAvailableElectricCars() {
+        return carService.getAvailableElectricCars();
+    }
+
     @PostMapping
     public void addCar(@RequestBody CarRegistrationRequest request) {
         carService.add(request);

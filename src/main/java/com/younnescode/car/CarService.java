@@ -58,14 +58,10 @@ public class CarService {
     }
 
     public List<Car> getAvailableCars() {
-        return carDAO.getAll().stream()
-                .filter(c -> !c.isBooked())
-                .collect(Collectors.toList());
+        return carDAO.getAvailableCars();
     }
 
     public List<Car> getAvailableElectricCars() {
-        return carDAO.getAll().stream()
-                .filter(c -> !c.isBooked() && c.isElectric())
-                .collect(Collectors.toList());
+        return carDAO.getAvailableElectricCars();
     }
 }
