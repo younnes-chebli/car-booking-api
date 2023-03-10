@@ -1,22 +1,53 @@
 package com.younnescode.car;
 
+import jakarta.persistence.*;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 
+@Entity
 public class Car {
+    @Id
+    @SequenceGenerator(
+            name = "car_id_sequence",
+            sequenceName = "car_id_sequence"
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "car_id_sequence"
+    )
     private Integer id;
+
+    @Column(
+            nullable = false
+    )
     private Integer regNumber;
+
+    @Column(
+            nullable = false
+    )
     private BigDecimal rentalPricePerDay;
+
+    @Column(
+            nullable = false
+    )
     private Brand brand;
+
+    @Column(
+            nullable = false
+    )
     private boolean isElectric;
+
+    @Column(
+            nullable = false
+    )
     private boolean isBooked;
 
     public Car() {
     }
 
-    public Car(BigDecimal rentalPricePerDay, Brand brand, boolean isElectric) {
-//        this.id = null;
-//        this.regNumber = null;
+    public Car(Integer regNumber, BigDecimal rentalPricePerDay, Brand brand, boolean isElectric) {
+        this.regNumber = regNumber;
         this.rentalPricePerDay = rentalPricePerDay;
         this.brand = brand;
         this.isElectric = isElectric;
@@ -34,10 +65,6 @@ public class Car {
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Integer getRegNumber() {

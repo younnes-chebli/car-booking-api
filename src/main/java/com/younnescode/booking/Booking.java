@@ -2,27 +2,46 @@ package com.younnescode.booking;
 
 import com.younnescode.car.Car;
 import com.younnescode.customer.Customer;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Entity
 public class Booking {
+    @Id
+    @SequenceGenerator(
+            name = "booking_id_sequence",
+            sequenceName = "booking_id_sequence"
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "booking_id_sequence"
+    )
     private Integer id;
+
+    @OneToOne
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
+
+    @OneToOne
+    @JoinColumn(name = "car_id", nullable = false)
     private Car car;
+
+    @Column(
+            nullable = false
+    )
     private LocalDateTime bookingTime;
+
+    @Column(
+            nullable = false
+    )
     private boolean isCanceled;
 
-    public Booking(Integer id, Customer customer, Car car, LocalDateTime bookingTime, boolean isCanceled) {
-        this.id = id;
-        this.customer = customer;
-        this.car = car;
-        this.bookingTime = bookingTime;
-        this.isCanceled = isCanceled;
+    public Booking() {
     }
 
     public Booking(Customer customer, Car car) {
-//        this.id = null;
         this.customer = customer;
         this.car = car;
         this.bookingTime = LocalDateTime.now();
@@ -31,10 +50,6 @@ public class Booking {
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Customer getCustomer() {

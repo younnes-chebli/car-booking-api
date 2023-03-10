@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
-public class BookingDataAccessService implements BookingDAO {
+@Repository("booking-list")
+public class BookingListDataAccessService implements BookingDAO {
     private static final List<Booking> bookings;
 
     static {

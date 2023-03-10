@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
-public class CarDataAccessService implements CarDAO {
+@Repository("car-list")
+public class CarListDataAccessService implements CarDAO {
     private static final List<Car> cars;
 
     static {

@@ -1,18 +1,41 @@
 package com.younnescode.customer;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
+@Entity
 public class Customer {
+    @Id
+    @SequenceGenerator(
+            name = "customer_id_sequence",
+            sequenceName = "customer_id_sequence"
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "customer_id_sequence"
+    )
     private Integer id;
+
+    @Column(
+            nullable = false
+    )
     private String firsname;
+
+    @Column(
+            nullable = false
+    )
     private String lastname;
+
+    @Column(
+            nullable = false
+    )
     private String email;
 
     public Customer() {
     }
 
     public Customer(String firsname, String lastname, String email) {
-//        this.id = null;
         this.firsname = firsname;
         this.lastname = lastname;
         this.email = email;
@@ -27,10 +50,6 @@ public class Customer {
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getFirsname() {

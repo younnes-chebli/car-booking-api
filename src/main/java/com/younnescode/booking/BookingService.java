@@ -3,30 +3,31 @@ package com.younnescode.booking;
 import com.younnescode.car.Car;
 import com.younnescode.customer.Customer;
 import com.younnescode.exception.ResourceNotFound;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class BookingService {
-    private final BookingDAO bookingDataAccessService;
+    private final BookingDAO bookingDAO;
 
-    public BookingService(BookingDAO bookingDataAccessService) {
-        this.bookingDataAccessService = bookingDataAccessService;
+    public BookingService(@Qualifier("booking-jpa") BookingDAO bookingDAO) {
+        this.bookingDAO = bookingDAO;
     }
 
     public Booking getById(Integer id) {
-        return bookingDataAccessService.getById(id)
+        return bookingDAO.getById(id)
                 .orElseThrow(() ->
                         new ResourceNotFound("Booking with id [%s] not found".formatted(id))
                 );
     }
 
     public List<Booking> getAll() {
-        return bookingDataAccessService.getAll();
+        return bookingDAO.getAll();
     }
 
     public void add(Customer customer, Car car) {
-        bookingDataAccessService.add(new Booking(customer, car));
+        bookingDAO.add(new Booking(customer, car));
     }
 }
