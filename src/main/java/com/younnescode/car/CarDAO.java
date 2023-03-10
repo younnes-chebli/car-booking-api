@@ -14,7 +14,7 @@ public interface CarDAO {
 
     boolean existsCarWithRegNumber(Integer regNumber);
 
-    void saveCar(Car car);
+    void updateCar(Car car);
 
     List<Car> getAvailableCars();
 

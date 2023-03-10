@@ -38,7 +38,7 @@ public class CarJPADataAccessService implements CarDAO {
     }
 
     @Override
-    public void saveCar(Car car) {
+    public void updateCar(Car car) {
         carRepository.save(car);
     }
 

@@ -46,4 +46,9 @@ public class CustomerListDataAccessService implements CustomerDAO {
     public void deleteCustomer(Customer customer) {
         customers.remove(customer);
     }
+
+    @Override
+    public void updateCustomer(Customer customer) {
+        customers.add(customer);
+    }
 }

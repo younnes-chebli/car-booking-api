@@ -1,5 +1,6 @@
 package com.younnescode.customer;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,5 +32,13 @@ public class CustomerController {
     @DeleteMapping("{id}")
     public void deleteCustomer(@PathVariable("id") Integer id) {
         customerService.deleteCustomer(id);
+    }
+
+    @PutMapping("{id}")
+    public void updateCustomer(
+            @PathVariable("id") Integer id,
+            @RequestBody CustomerUpdateRequest request
+            ) {
+        customerService.updateCustomer(id, request);
     }
 }

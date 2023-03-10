@@ -45,7 +45,7 @@ public class BookingService {
         }
 
         car.setBooked(true);
-        carDAO.saveCar(car);
+        carDAO.updateCar(car);
 
         Booking booking = new Booking(customer, car);
 
