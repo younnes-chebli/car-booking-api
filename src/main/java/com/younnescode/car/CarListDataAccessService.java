@@ -20,12 +20,12 @@ public class CarListDataAccessService implements CarDAO {
     }
 
     @Override
-    public List<Car> getAll() {
+    public List<Car> getAllCars() {
         return cars;
     }
 
     @Override
-    public Optional<Car> getById(Integer id) {
+    public Optional<Car> getCarById(Integer id) {
         return cars.stream()
                 .filter(c -> c.getId().equals(id))
                 .findFirst();
@@ -33,7 +33,7 @@ public class CarListDataAccessService implements CarDAO {
     }
 
     @Override
-    public Optional<Car> getByRegNumber(Integer regNumber) {
+    public Optional<Car> getCarByRegNumber(Integer regNumber) {
         return cars.stream()
                 .filter(c -> c.getRegNumber().equals(regNumber))
                 .findFirst();
@@ -45,7 +45,7 @@ public class CarListDataAccessService implements CarDAO {
     }
 
     @Override
-    public boolean existsWithRegNumber(Integer regNumber) {
+    public boolean existsCarWithRegNumber(Integer regNumber) {
         return cars.stream()
                 .anyMatch(c -> c.getRegNumber().equals(regNumber));
     }
@@ -67,5 +67,10 @@ public class CarListDataAccessService implements CarDAO {
         return cars.stream()
                 .filter(c -> !c.isBooked() && c.isElectric())
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteCar(Car car) {
+        cars.remove(car);
     }
 }

@@ -4,19 +4,20 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CarDAO {
-    List<Car> getAll();
+    List<Car> getAllCars();
 
-    Optional<Car> getById(Integer id);
+    Optional<Car> getCarById(Integer id);
 
-    Optional<Car> getByRegNumber(Integer regNumber);
+    Optional<Car> getCarByRegNumber(Integer regNumber);
 
     void addCar(Car car);
 
-    boolean existsWithRegNumber(Integer regNumber);
+    boolean existsCarWithRegNumber(Integer regNumber);
 
     void saveCar(Car car);
 
     List<Car> getAvailableCars();
 
     List<Car> getAvailableElectricCars();
+    void deleteCar(Car car);
 }

@@ -6,6 +6,15 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
+@Table(
+        name = "car",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "car_reg_number_unique",
+                        columnNames = "reg_number"
+                )
+        }
+)
 public class Car {
     @Id
     @SequenceGenerator(
@@ -16,30 +25,38 @@ public class Car {
             strategy = GenerationType.SEQUENCE,
             generator = "car_id_sequence"
     )
+    @Column(
+            name = "id",
+            updatable = false
+    )
     private Integer id;
 
     @Column(
-            nullable = false,
-            unique = true
+            name = "reg_number",
+            nullable = false
     )
     private Integer regNumber;
 
     @Column(
+            name = "rental_price_per_day",
             nullable = false
     )
     private BigDecimal rentalPricePerDay;
 
     @Column(
+            name = "brand",
             nullable = false
     )
     private Brand brand;
 
     @Column(
+            name = "is_electric",
             nullable = false
     )
     private boolean isElectric;
 
     @Column(
+            name = "is_booked",
             nullable = false
     )
     private boolean isBooked;

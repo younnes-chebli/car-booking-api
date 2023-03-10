@@ -13,17 +13,17 @@ public class CarJPADataAccessService implements CarDAO {
         this.carRepository = carRepository;
     }
     @Override
-    public List<Car> getAll() {
+    public List<Car> getAllCars() {
         return carRepository.findAll();
     }
 
     @Override
-    public Optional<Car> getById(Integer id) {
+    public Optional<Car> getCarById(Integer id) {
         return carRepository.findById(id);
     }
 
     @Override
-    public Optional<Car> getByRegNumber(Integer regNumber) {
+    public Optional<Car> getCarByRegNumber(Integer regNumber) {
         return carRepository.findByRegNumber(regNumber);
     }
 
@@ -33,8 +33,8 @@ public class CarJPADataAccessService implements CarDAO {
     }
 
     @Override
-    public boolean existsWithRegNumber(Integer regNumber) {
-        return carRepository.existsCarByRegNumber(regNumber);
+    public boolean existsCarWithRegNumber(Integer regNumber) {
+        return carRepository.existsByRegNumber(regNumber);
     }
 
     @Override
@@ -58,5 +58,10 @@ public class CarJPADataAccessService implements CarDAO {
         return carRepository.findAll().stream()
                 .filter(c -> !c.isBooked() && c.isElectric())
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteCar(Car car) {
+        carRepository.delete(car);
     }
 }

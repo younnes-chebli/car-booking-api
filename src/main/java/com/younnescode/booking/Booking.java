@@ -8,6 +8,9 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
+@Table(
+        name = "booking"
+)
 public class Booking {
     @Id
     @SequenceGenerator(
@@ -17,6 +20,10 @@ public class Booking {
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "booking_id_sequence"
+    )
+    @Column(
+            name = "id",
+            updatable = false
     )
     private Integer id;
 
@@ -29,11 +36,13 @@ public class Booking {
     private Car car;
 
     @Column(
+            name = "booking_time",
             nullable = false
     )
     private LocalDateTime bookingTime;
 
     @Column(
+            name = "is_canceled",
             nullable = false
     )
     private boolean isCanceled;

@@ -15,17 +15,17 @@ public class CarController {
 
     @GetMapping
     public List<Car> getCars() {
-        return carService.getAll();
+        return carService.getAllCars();
     }
 
     @GetMapping("{id}")
     public Car getCar(@PathVariable("id") Integer id) {
-        return carService.getById(id);
+        return carService.getCarById(id);
     }
 
     @GetMapping("rn/{regNumber}")
     public Car getCarByRegNumber(@PathVariable("regNumber") Integer regNumber) {
-        return carService.getByRegNumber(regNumber);
+        return carService.getCarByRegNumber(regNumber);
     }
 
     @GetMapping("available")
@@ -40,6 +40,11 @@ public class CarController {
 
     @PostMapping
     public void addCar(@RequestBody CarRegistrationRequest request) {
-        carService.add(request);
+        carService.addCar(request);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteCar(@PathVariable("id") Integer id) {
+        carService.deleteCar(id);
     }
 }

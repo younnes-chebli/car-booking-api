@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class CarService {
@@ -18,26 +17,26 @@ public class CarService {
         this.carDAO = carDAO;
     }
 
-    public List<Car> getAll() {
-        return carDAO.getAll();
+    public List<Car> getAllCars() {
+        return carDAO.getAllCars();
     }
 
-    public Car getById(Integer id) {
-        return carDAO.getById(id)
+    public Car getCarById(Integer id) {
+        return carDAO.getCarById(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Car with id [%s] not found".formatted(id))
                 );
     }
 
-    public Car getByRegNumber(Integer regNumber) {
-        return carDAO.getByRegNumber(regNumber)
+    public Car getCarByRegNumber(Integer regNumber) {
+        return carDAO.getCarByRegNumber(regNumber)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Car with Reg Number [%s] not found".formatted(regNumber))
                 );
     }
 
-    public void add(CarRegistrationRequest carRegistrationRequest){
-        if(carDAO.existsWithRegNumber(carRegistrationRequest.regNumber())) {
+    public void addCar(CarRegistrationRequest carRegistrationRequest){
+        if(carDAO.existsCarWithRegNumber(carRegistrationRequest.regNumber())) {
             throw new DuplicateResourceException("Reg Number already taken");
         }
 
@@ -63,5 +62,14 @@ public class CarService {
 
     public List<Car> getAvailableElectricCars() {
         return carDAO.getAvailableElectricCars();
+    }
+
+    public void deleteCar(Integer id) {
+        Car car = carDAO.getCarById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Car with id [%s] not found".formatted(id))
+                );
+
+        carDAO.deleteCar(car);
     }
 }
