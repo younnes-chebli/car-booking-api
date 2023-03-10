@@ -15,19 +15,19 @@ public class CustomerService {
         this.customerDAO = customerDAO;
     }
 
-    public List<Customer> getAll() {
-        return customerDAO.getAll();
+    public List<Customer> getAllCustomers() {
+        return customerDAO.getAllCustomers();
     }
 
-    public Customer getById(Integer id) {
-        return customerDAO.getById(id)
+    public Customer getCustomerById(Integer id) {
+        return customerDAO.getCustomerById(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Customer with id [%s] not found".formatted(id))
                 );
     }
 
-    public void add(CustomerRegistrationRequest customerRegistrationRequest) {
-        if(customerDAO.existsWithEmail(customerRegistrationRequest.email())) {
+    public void addCustomer(CustomerRegistrationRequest customerRegistrationRequest) {
+        if(customerDAO.existsCustomerWithEmail(customerRegistrationRequest.email())) {
             throw new DuplicateResourceException("Email already taken");
         }
 
@@ -37,6 +37,15 @@ public class CustomerService {
                 customerRegistrationRequest.email()
         );
 
-        customerDAO.add(customer);
+        customerDAO.addCustomer(customer);
+    }
+
+    public void deleteCustomer(Integer id) {
+        Customer customer = customerDAO.getCustomerById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Customer with id [%s] not found".formatted(id))
+                );
+
+        customerDAO.deleteCustomer(customer);
     }
 }

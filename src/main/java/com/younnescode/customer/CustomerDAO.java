@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CustomerDAO {
-    List<Customer> getAll();
+    List<Customer> getAllCustomers();
 
-    void add(Customer user);
+    void addCustomer(Customer user);
 
-    Optional<Customer> getById(Integer id);
+    Optional<Customer> getCustomerById(Integer id);
 
-    boolean existsWithEmail(String email);
+    boolean existsCustomerWithEmail(String email);
+
+    void deleteCustomer(Customer customer);
 }

@@ -15,16 +15,21 @@ public class CustomerController {
 
     @GetMapping
     public List<Customer> getCustomers() {
-        return customerService.getAll();
+        return customerService.getAllCustomers();
     }
 
     @GetMapping("{id}")
     public Customer getCustomer(@PathVariable("id") Integer id) {
-        return customerService.getById(id);
+        return customerService.getCustomerById(id);
     }
 
     @PostMapping
     public void addCustomer(@RequestBody CustomerRegistrationRequest request) {
-        customerService.add(request);
+        customerService.addCustomer(request);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteCustomer(@PathVariable("id") Integer id) {
+        customerService.deleteCustomer(id);
     }
 }
