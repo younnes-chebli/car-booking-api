@@ -25,6 +25,6 @@ public class BookingJPADataAccessService implements BookingDAO {
 
     @Override
     public Optional<Booking> getById(Integer id) {
-        return Optional.empty();
+        return bookingRepository.findById(id);
     }
 }

@@ -18,11 +18,11 @@ public class CarJPADataAccessService implements CarDAO {
 
     @Override
     public Optional<Car> getById(Integer id) {
-        return Optional.empty();
+        return carRepository.findById(id);
     }
 
     @Override
     public Optional<Car> getByRegNumber(Integer regNumber) {
-        return Optional.empty();
+        return carRepository.findByRegNumber(regNumber);
     }
 }

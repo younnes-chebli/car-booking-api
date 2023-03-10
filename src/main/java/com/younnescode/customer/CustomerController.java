@@ -14,11 +14,6 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping("/api/v1")
-    public String hello() {
-        return "helllo";
-    }
-
     @GetMapping("api/v1/customers")
     public List<Customer> getCustomers() {
         return customerService.getAll();

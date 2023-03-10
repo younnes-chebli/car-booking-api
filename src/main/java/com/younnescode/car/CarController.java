@@ -24,7 +24,7 @@ public class CarController {
         return carService.getById(id);
     }
 
-    @GetMapping("api/v1/car/regnumber/{regNumber}")
+    @GetMapping("api/v1/car/rn/{regNumber}")
     public Car getCarByRegNumber(@PathVariable("regNumber") Integer regNumber) {
         return carService.getByRegNumber(regNumber);
     }
