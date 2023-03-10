@@ -12,7 +12,7 @@ Extension and improvement of our [CLI Car Booking Application](https://github.co
 
 ## Endpoints
 
-| HTTP                                      | Description                                            |
+| Endpoints                                 | Description                                            |
 |-------------------------------------------|--------------------------------------------------------|
 | **Customers**                             |                                                        |
 | ```GET /api/v1/customers```               | Retrieves **All** the **Customers**                    |
