@@ -6,6 +6,7 @@ Extension and improvement of our [CLI Car Booking Application](https://github.co
 * **Java 17**
 * **Maven**
 * **Spring Boot 3**
+* **Spring Data JPA**
 * **PostgreSQL Database** running on
 * **Docker**
 
