@@ -1,9 +1,6 @@
 package com.younnescode.booking;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +21,10 @@ public class BookingController {
     @GetMapping("{id}")
     public Booking getBooking(@PathVariable("id") Integer id) {
         return bookingService.getById(id);
+    }
+
+    @PostMapping
+    public void addBooking(@RequestBody BookingRegistrationRequest request) {
+        bookingService.add(request);
     }
 }

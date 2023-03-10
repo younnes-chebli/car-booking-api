@@ -13,4 +13,6 @@ public interface CarDAO {
     void addCar(Car car);
 
     boolean existsWithRegNumber(Integer regNumber);
+
+    void saveCar(Car car);
 }

@@ -30,6 +30,6 @@ public class CarController {
 
     @PostMapping
     public void addCar(@RequestBody CarRegistrationRequest request) {
-        carService.addCar(request);
+        carService.add(request);
     }
 }

@@ -36,7 +36,7 @@ public class CarService {
                 );
     }
 
-    public void addCar(CarRegistrationRequest carRegistrationRequest){
+    public void add(CarRegistrationRequest carRegistrationRequest){
         if(carDAO.existsWithRegNumber(carRegistrationRequest.regNumber())) {
             throw new DuplicateResourceException("Reg Number already taken");
         }

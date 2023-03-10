@@ -26,7 +26,7 @@ public class CustomerService {
                 );
     }
 
-    public void addCustomer(CustomerRegistrationRequest customerRegistrationRequest) {
+    public void add(CustomerRegistrationRequest customerRegistrationRequest) {
         if(customerDAO.existsWithEmail(customerRegistrationRequest.email())) {
             throw new DuplicateResourceException("Email already taken");
         }

@@ -48,4 +48,9 @@ public class CarListDataAccessService implements CarDAO {
         return cars.stream()
                 .anyMatch(c -> c.getRegNumber().equals(regNumber));
     }
+
+    @Override
+    public void saveCar(Car car) {
+
+    }
 }

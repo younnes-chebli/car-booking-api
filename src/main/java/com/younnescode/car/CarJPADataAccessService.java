@@ -35,4 +35,9 @@ public class CarJPADataAccessService implements CarDAO {
     public boolean existsWithRegNumber(Integer regNumber) {
         return carRepository.existsCarByRegNumber(regNumber);
     }
+
+    @Override
+    public void saveCar(Car car) {
+        carRepository.save(car);
+    }
 }
