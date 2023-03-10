@@ -12,16 +12,23 @@ Extension and improvement of our [CLI Car Booking Application](https://github.co
 
 ## Endpoints
 
-| HTTP                                 | Description                                            |
-|--------------------------------------|--------------------------------------------------------|
-| **Customers**                        |                                                        |
-| ```GET /api/v1/customers```          | Retrieves **all** the **Customers**                    |
-| ```GET /api/v1/customer/{id}```      | Retrieves the **Customer** with the specified **id**   |
-| **Cars**                             |
-| ```GET /api/v1/cars```               | Retrieves **all** the **Cars**                         |
-| ```GET /api/v1/car/{id}```           | Retrieves the **Car** with the specified **id**        |
-| ```GET /api/v1/car/rn/{regNumber}``` | Retrieves the **Car** with the specified **regNumber** |
-| **Bookings**                         |
-| ```GET /api/v1/bookings```           | Retrieves **all** the **Bookings**                     |
-| ```GET /api/v1/booking/{id}```       | Retrieves the **Booking** with the specified **id**    |
+| HTTP                                  | Description                                            |
+|---------------------------------------|--------------------------------------------------------|
+| **Customers**                         |                                                        |
+| ```GET /api/v1/customers```           | Retrieves **All** the **Customers**                    |
+| ```GET /api/v1/customers/{id}```      | Retrieves the **Customer** with the specified **id**   |
+| ```POST /api/v1/customers```          | Adds a **New Customer**                                |
+| ```PUT /api/v1/customers```           | **Updates** a Customer                                 |
+| ```DELETE /api/v1/customers```        | **Deletes** a Customer                                 |
+| **Cars**                              |
+| ```GET /api/v1/cars```                | Retrieves **All** the **Cars**                         |
+| ```GET /api/v1/cars/{id}```           | Retrieves the **Car** with the specified **id**        |
+| ```GET /api/v1/cars/rn/{regNumber}``` | Retrieves the **Car** with the specified **regNumber** |
+| ```POST /api/v1/cars```               | Adds a **New Car**                                     |
+| ```PUT /api/v1/cars```                | **Updates** a Car                                      |
+| ```DELETE /api/v1/cars```             | **Deletes** a Car                                      |
+| **Bookings**                          |
+| ```GET /api/v1/bookings```            | Retrieves **All** the **Bookings**                     |
+| ```GET /api/v1/bookings/{id}```       | Retrieves the **Booking** with the specified **id**    |
+| ```POST /api /v1/bookings```          | Adds a **New Booking**                                 |
 

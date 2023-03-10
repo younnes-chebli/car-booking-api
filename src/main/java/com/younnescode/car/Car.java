@@ -19,7 +19,8 @@ public class Car {
     private Integer id;
 
     @Column(
-            nullable = false
+            nullable = false,
+            unique = true
     )
     private Integer regNumber;
 

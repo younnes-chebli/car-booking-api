@@ -37,4 +37,15 @@ public class CarListDataAccessService implements CarDAO {
                 .filter(c -> c.getRegNumber().equals(regNumber))
                 .findFirst();
     }
+
+    @Override
+    public void addCar(Car car) {
+        cars.add(car);
+    }
+
+    @Override
+    public boolean existsWithRegNumber(Integer regNumber) {
+        return cars.stream()
+                .anyMatch(c -> c.getRegNumber().equals(regNumber));
+    }
 }

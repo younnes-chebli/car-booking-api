@@ -2,7 +2,7 @@ package com.younnescode.booking;
 
 import com.younnescode.car.Car;
 import com.younnescode.customer.Customer;
-import com.younnescode.exception.ResourceNotFound;
+import com.younnescode.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,7 @@ public class BookingService {
     public Booking getById(Integer id) {
         return bookingDAO.getById(id)
                 .orElseThrow(() ->
-                        new ResourceNotFound("Booking with id [%s] not found".formatted(id))
+                        new ResourceNotFoundException("Booking with id [%s] not found".formatted(id))
                 );
     }
 

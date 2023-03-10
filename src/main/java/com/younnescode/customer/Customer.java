@@ -28,7 +28,8 @@ public class Customer {
     private String lastname;
 
     @Column(
-            nullable = false
+            nullable = false,
+            unique = true
     )
     private String email;
 

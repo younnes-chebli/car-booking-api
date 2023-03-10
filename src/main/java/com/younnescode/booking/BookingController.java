@@ -2,11 +2,13 @@ package com.younnescode.booking;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("api/v1/bookings")
 public class BookingController {
     private final BookingService bookingService;
 
@@ -14,12 +16,12 @@ public class BookingController {
         this.bookingService = bookingService;
     }
 
-    @GetMapping("api/v1/bookings")
+    @GetMapping
     public List<Booking> getBookings() {
         return bookingService.getAll();
     }
 
-    @GetMapping("api/v1/booking/{id}")
+    @GetMapping("{id}")
     public Booking getBooking(@PathVariable("id") Integer id) {
         return bookingService.getById(id);
     }

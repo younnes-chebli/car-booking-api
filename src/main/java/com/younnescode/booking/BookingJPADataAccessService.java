@@ -20,7 +20,7 @@ public class BookingJPADataAccessService implements BookingDAO {
 
     @Override
     public void add(Booking booking) {
-
+        bookingRepository.save(booking);
     }
 
     @Override

@@ -9,4 +9,6 @@ public interface CustomerDAO {
     void add(Customer user);
 
     Optional<Customer> getById(Integer id);
+
+    boolean existsWithEmail(String email);
 }

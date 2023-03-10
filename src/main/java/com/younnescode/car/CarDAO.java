@@ -9,4 +9,8 @@ public interface CarDAO {
     Optional<Car> getById(Integer id);
 
     Optional<Car> getByRegNumber(Integer regNumber);
+
+    void addCar(Car car);
+
+    boolean existsWithRegNumber(Integer regNumber);
 }
