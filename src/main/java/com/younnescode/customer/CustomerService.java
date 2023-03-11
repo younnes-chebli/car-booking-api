@@ -3,7 +3,6 @@ package com.younnescode.customer;
 import com.younnescode.exception.DuplicateResourceException;
 import com.younnescode.exception.NotValidResourceException;
 import com.younnescode.exception.ResourceNotFoundException;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -36,19 +35,25 @@ public class CustomerService {
     }
 
     public void addCustomer(CustomerRegistrationRequest customerRegistrationRequest) {
-        checkEmailExists(customerRegistrationRequest.email());
+        if(customerRegistrationRequest.firstname() == null || customerRegistrationRequest.lastname() == null || customerRegistrationRequest.email() == null) {
+            throw new NotValidResourceException("Missing data");
+        }
 
-        Customer customer = new Customer(
-                customerRegistrationRequest.firstname(),
-                customerRegistrationRequest.lastname(),
-                customerRegistrationRequest.email()
+        var firstname = customerRegistrationRequest.firstname();
+        var lastname =  customerRegistrationRequest.lastname();
+        var email = customerRegistrationRequest.email();
+        checkEmailExists(email);
+
+        var customer = new Customer(
+                firstname,
+                lastname,
+                email
         );
-
         customerDAO.addCustomer(customer);
     }
 
     public void deleteCustomer(Integer id) {
-        Customer customer = customerDAO.getCustomerById(id)
+        var customer = customerDAO.getCustomerById(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Customer with id [%s] not found".formatted(id))
                 );
@@ -63,30 +68,27 @@ public class CustomerService {
     }
 
     public void updateCustomer(Integer id, CustomerUpdateRequest customerUpdateRequest) {
-        Customer customer = customerDAO.getCustomerById(id)
+        var customer = customerDAO.getCustomerById(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Customer with id [%s] not found".formatted(id))
                 );
 
-        String firstname = customerUpdateRequest.firstname();
-        String lasname = customerUpdateRequest.lastname();
-        String email = customerUpdateRequest.email();
-
-        if(firstname != null) {
+        if(customerUpdateRequest.firstname() != null) {
+            var firstname = customerUpdateRequest.firstname();
             customer.setFirsname(firstname);
         }
 
-        if(lasname != null) {
-            customer.setLastname(lasname);
+        if(customerUpdateRequest.lastname() != null) {
+            var lastname = customerUpdateRequest.lastname();
+            customer.setLastname(lastname);
         }
 
-        if(email != null == !customer.getEmail().equals(email)) {
+        if(customerUpdateRequest.email() != null == !customer.getEmail().equals(customerUpdateRequest.email())) {
+            var email = customerUpdateRequest.email();
             checkEmailExists(email);
-
             if(!checkEmailValid(email, "^(.+)@(\\S+)$")) {
                 throw new NotValidResourceException("Email not valid");
             }
-
             customer.setEmail(email);
         }
 

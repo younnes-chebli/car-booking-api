@@ -35,24 +35,45 @@ public class CarService {
                 );
     }
 
-    public void addCar(CarRegistrationRequest carRegistrationRequest){
-        if(carDAO.existsCarWithRegNumber(carRegistrationRequest.regNumber())) {
+    private void checkValidBrand(String brand) {
+        try {
+            Brand.valueOf(brand);
+        } catch (IllegalArgumentException e) {
+            throw new NotValidResourceException("Brand not Valid");
+        }
+    }
+
+    private void checkRegNumberExists(Integer regNumber) {
+        if(carDAO.existsCarWithRegNumber(regNumber)) {
             throw new DuplicateResourceException("Reg Number already taken");
         }
+    }
 
-        try {
-            Brand.valueOf(carRegistrationRequest.brand());
-        } catch (IllegalArgumentException e) {
-            throw new NotValidResourceException("Not Valid Brand");
+    private void checkRentalPricePerDay(Double rentalPricePerDay) {
+        if(rentalPricePerDay <= 0) {
+            throw new NotValidResourceException("Price not valid");
+        }
+    }
+
+    public void addCar(CarRegistrationRequest carRegistrationRequest){
+        if(carRegistrationRequest.regNumber() == null || carRegistrationRequest.rentalPricePerDay() == null || carRegistrationRequest.brand() == null || Boolean.valueOf(carRegistrationRequest.isElectric()) == null) {
+            throw new NotValidResourceException("Missing data");
         }
 
-        Car car = new Car(
-                carRegistrationRequest.regNumber(),
-                new BigDecimal(carRegistrationRequest.rentalPricePerDay()).setScale(2, BigDecimal.ROUND_HALF_EVEN),
-                Brand.valueOf(carRegistrationRequest.brand()),
-                carRegistrationRequest.isElectric()
-        );
+        checkRegNumberExists(carRegistrationRequest.regNumber());
+        checkRentalPricePerDay(carRegistrationRequest.rentalPricePerDay());
+        checkValidBrand(carRegistrationRequest.brand());
 
+        var regNumber = carRegistrationRequest.regNumber();
+        var rentalPricePerDay = new BigDecimal(carRegistrationRequest.rentalPricePerDay()).setScale(2, BigDecimal.ROUND_HALF_EVEN);
+        var brand = Brand.valueOf(carRegistrationRequest.brand());
+        var isElectric = carRegistrationRequest.isElectric();
+        Car car = new Car(
+                regNumber,
+                rentalPricePerDay,
+                brand,
+                isElectric
+        );
         carDAO.addCar(car);
     }
 
@@ -71,5 +92,46 @@ public class CarService {
                 );
 
         carDAO.deleteCar(car);
+    }
+
+    public void updateCar(Integer id, CarUpdateRequest carUpdateRequest) {
+        var car = carDAO.getCarById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Car with id [%s] not found".formatted(id))
+                );
+
+        if(carUpdateRequest.regNumber() != null && !car.getRegNumber().equals(carUpdateRequest.regNumber())) {
+            var regNumber = carUpdateRequest.regNumber();
+            if(regNumber <= 0) {
+                throw new NotValidResourceException("Reg Number not valid");
+            }
+            checkRegNumberExists(regNumber);
+            car.setRegNumber(regNumber);
+        }
+
+        if(carUpdateRequest.rentalPricePerDay() != null) {
+            checkRentalPricePerDay(carUpdateRequest.rentalPricePerDay());
+            var rentalPricePerDay = new BigDecimal(carUpdateRequest.rentalPricePerDay()).setScale(2, BigDecimal.ROUND_HALF_EVEN);
+            car.setRentalPricePerDay(rentalPricePerDay);
+        }
+
+        if(carUpdateRequest.brand() != null) {
+            var stringBrand = carUpdateRequest.brand();
+            checkValidBrand(stringBrand);
+            var brand = Brand.valueOf(carUpdateRequest.brand());
+            car.setBrand(brand);
+        }
+
+        if(Boolean.valueOf(carUpdateRequest.isElectric()) != null) {
+            var isElectric = carUpdateRequest.isElectric();
+            car.setBooked(isElectric);
+        }
+
+        if(Boolean.valueOf(carUpdateRequest.isBooked()) != null) {
+            var isBooked = carUpdateRequest.isBooked();
+            car.setBooked(isBooked);
+        }
+
+        carDAO.updateCar(car);
     }
 }

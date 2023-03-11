@@ -1,6 +1,5 @@
 package com.younnescode.customer;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

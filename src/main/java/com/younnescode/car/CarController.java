@@ -47,4 +47,12 @@ public class CarController {
     public void deleteCar(@PathVariable("id") Integer id) {
         carService.deleteCar(id);
     }
+
+    @PutMapping("{id}")
+    public void updateCar(
+            @PathVariable("id") Integer id,
+            @RequestBody CarUpdateRequest request
+            ) {
+        carService.updateCar(id, request);
+    }
 }
