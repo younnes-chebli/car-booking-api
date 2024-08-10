@@ -32,5 +32,5 @@ Extension and improvement of our [CLI Car Booking Application](https://github.co
 | **Bookings**                              |
 | ```GET /api/v1/bookings```                | Retrieves **All** the **Bookings**                     |
 | ```GET /api/v1/bookings/{id}```           | Retrieves the **Booking** with the specified **id**    |
-| ```POST /api /v1/bookings```              | Adds a **New Booking**                                 |
+| ```POST /api/v1/bookings```              | Adds a **New Booking**                                 |
 
